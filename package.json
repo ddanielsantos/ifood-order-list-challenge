@@ -1,0 +1,18 @@
+{
+  "name": "ifood-order-list-challenge",
+  "version": "1.0.0",
+  "description": "Solving the Ifood challenge, proposed at https://github.com/ifood/ifood-fullstack-test",
+  "main": "dist/index.js",
+  "repository": "https://github.com/ddanielsantos/ifood-order-list-challenge.git",
+  "author": "Daniel Santos",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^17.0.8",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "koa": "^2.13.4",
+    "mongodb": "^4.3.0"
+  }
+}
