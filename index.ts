@@ -6,7 +6,7 @@ dotenv.config()
 
 const app = new Koa()
 
-const PORT = process.env.SERVER_PORT
+const PORT = process.env.PORT || 3483
 
 app.use(router.routes())
 
