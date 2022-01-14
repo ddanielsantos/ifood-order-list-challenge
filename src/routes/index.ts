@@ -1,4 +1,4 @@
-import * as Router from '@koa/router'
+import Router = require('@koa/router')
 import { OrderRepository } from '../repositories/order'
 
 const router = new Router()
