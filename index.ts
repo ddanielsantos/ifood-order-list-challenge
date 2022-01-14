@@ -1,5 +1,5 @@
 import Koa from 'koa'
-import * as dotenv from 'dotenv'
+import dotenv from 'dotenv'
 import { router } from './src/routes/'
 
 dotenv.config()
