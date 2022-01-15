@@ -1,8 +1,9 @@
 import { CLIENT, DB } from '../db/mongo'
-import { WithId, InsertOneResult, OptionalUnlessRequiredId } from "mongodb"
+import { WithId, InsertOneResult, OptionalUnlessRequiredId, ObjectId, Filter } from "mongodb"
 
 type Repository<T> = {
   findAll: () => Promise<WithId<T>[]>,
+  findOne: (id: string) => Promise<WithId<T> | null>,
   insertOne: (document: OptionalUnlessRequiredId<T>) => Promise<InsertOneResult<T>>
 }
 
@@ -17,6 +18,17 @@ function repositoryFactory<T>(collectionName: string): Repository<T> {
 
       return documents
     },
+
+    findOne: async function (id: string): Promise<WithId<T> | null> {
+      await CLIENT.connect()
+      const query = new ObjectId(id)
+
+      const document = await COLLECTION.findOne(query as Filter<T>)
+      await CLIENT.close()
+
+      return document
+    },
+
     insertOne: async function (document: OptionalUnlessRequiredId<T>): Promise<InsertOneResult<T>> {
       await CLIENT.connect()
       const serverResponse = COLLECTION.insertOne(document)
