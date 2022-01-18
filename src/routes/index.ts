@@ -12,9 +12,15 @@ router.get('/orders', async (ctx, next) => {
 })
 
 router.get('/orders/:id', async (ctx, next) => {
-  const res = await OrderRepository.findOne(ctx.params.id)
-  console.log(res)
-  ctx.body = res
+  ctx.body = await OrderRepository.findOne(ctx.params.id)
+})
+
+router.delete('/orders/:id', async (ctx, next) => {
+  ctx.body = await OrderRepository.deleteOne(ctx.params.id)
+})
+
+router.post('/orders', async (ctx, next) => {
+  ctx.body = await OrderRepository.insertOne(ctx.request.body)
 })
 
 export { router }
