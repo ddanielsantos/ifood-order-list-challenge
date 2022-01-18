@@ -2,20 +2,19 @@ import { repositoryFactory } from '../factories/repository'
 
 const COLLECTION_NAME = 'orders'
 
-type Item = {
+type Items = {
   description: string,
   quantity: number,
-  unitPrice: number
-}
+  price: number
+}[]
 
-type Items = Item[]
 
 type Order = {
-  uuid: string,
-  date: string,
-  clientName: string,
-  phone: string,
-  email: string,
+  _id: string,
+  clientId: string,
+  restaurantId: string,
+  createdAt: string,
+  confirmedAt: string,
   items: Items
 }
 
