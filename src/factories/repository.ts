@@ -1,10 +1,11 @@
 import { CLIENT, DB } from '../db/mongo'
-import { WithId, InsertOneResult, OptionalUnlessRequiredId, ObjectId, Filter } from "mongodb"
+import { WithId, InsertOneResult, OptionalUnlessRequiredId, ObjectId, Filter, DeleteResult } from "mongodb"
 
 type Repository<T> = {
   findAll: () => Promise<WithId<T>[]>,
   findOne: (id: string) => Promise<WithId<T> | null>,
-  insertOne: (document: OptionalUnlessRequiredId<T>) => Promise<InsertOneResult<T>>
+  insertOne: (document: OptionalUnlessRequiredId<T>) => Promise<InsertOneResult<T>>,
+  deleteOne: (id: string) => Promise<DeleteResult>
 }
 
 function repositoryFactory<T>(collectionName: string): Repository<T> {
@@ -31,7 +32,18 @@ function repositoryFactory<T>(collectionName: string): Repository<T> {
 
     insertOne: async function (document: OptionalUnlessRequiredId<T>): Promise<InsertOneResult<T>> {
       await CLIENT.connect()
-      const serverResponse = COLLECTION.insertOne(document)
+      const serverResponse = await COLLECTION.insertOne(document)
+      await CLIENT.close()
+
+      return serverResponse
+    },
+
+    deleteOne: async function (id: string): Promise<DeleteResult> {
+      const query = ({ _id: new ObjectId(id) }) as unknown as Filter<T>
+      
+      await CLIENT.connect()
+      
+      const serverResponse = await COLLECTION.deleteOne(query)
       await CLIENT.close()
 
       return serverResponse
