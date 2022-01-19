@@ -1,5 +1,5 @@
 import Router = require('@koa/router')
-import { OrderRepository } from '../repositories/order'
+import { OrderRepository, OrderSchema } from '../repositories/order'
 
 const router = new Router()
 
@@ -16,7 +16,15 @@ router.delete('/orders/:id', async (ctx, next) => {
 })
 
 router.post('/orders', async (ctx, next) => {
-  ctx.body = await OrderRepository.insertOne(ctx.request.body)
+  const data = ctx.request.body
+  try {
+    const parsedData = OrderSchema.parse(data)
+    ctx.body = await OrderRepository.insertOne(parsedData)
+  } catch {
+    ctx.status = 403
+    ctx.body = {error: 'so bad'}
+  }
+
 })
 
 export { router as order }
