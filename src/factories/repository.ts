@@ -1,6 +1,5 @@
 import { CLIENT, DB } from '../db/mongo'
 import { WithId, InsertOneResult, OptionalUnlessRequiredId, ObjectId, Filter, DeleteResult } from "mongodb"
-import crypto from 'crypto'
 
 type Repository<T> = {
   findAll: () => Promise<WithId<T>[]>,
@@ -33,7 +32,7 @@ function repositoryFactory<T>(collectionName: string): Repository<T> {
 
     insertOne: async function (document: OptionalUnlessRequiredId<T>): Promise<InsertOneResult<T>> {
       await CLIENT.connect()
-      const serverResponse = await COLLECTION.insertOne({_id: crypto.randomUUID(), ...document})
+      const serverResponse = await COLLECTION.insertOne({...document})
       await CLIENT.close()
 
       return serverResponse

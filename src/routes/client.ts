@@ -1,5 +1,6 @@
 import Router = require('@koa/router')
-import { ClientRepository } from '../repositories/client'
+import { ClientRepository, ClientSchema } from '../repositories/client'
+import crypto from 'crypto' // move to separate file/function
 
 const router = new Router()
 
@@ -16,7 +17,15 @@ router.delete('/clients/:id', async (ctx, next) => {
 })
 
 router.post('/clients', async (ctx, next) => {
-  ctx.body = await ClientRepository.insertOne(ctx.request.body)
+  const data = ctx.request.body
+  try {
+    const parsedData = ClientSchema.parse(data)
+
+    ctx.body = await ClientRepository.insertOne({_id: crypto.randomUUID(), ...parsedData}) // move to separate file/function
+  } catch {
+    ctx.status = 403
+    ctx.body = {error: 'so bad'}
+  }
 })
 
 
