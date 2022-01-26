@@ -3,20 +3,26 @@ import { repositoryFactory } from '../factories/repository'
 
 const COLLECTION_NAME = 'orders'
 
-const ItemSchema = z.object({
-  quantity: z.number().positive(),
-  price: z.number().positive()
-})
+const ItemSchema = z.array(
+  z.object({
+    description: z.string().min(1),
+    quantity: z.number().positive(),
+    price: z.number().positive()
+  })
+)
+
 
 const OrderSchema = z.object({
-  clientId: z.string().uuid(),
-  restaurantId: z.string().uuid(),
-  createdAt: z.string(),
+  client: z.string().min(1),
+  restaurant: z.string().min(1),
+  createdAt: z.string().min(1),
   confirmedAt: z.string(),
-  items: z.array(ItemSchema).min(1)
+  items: ItemSchema.min(1)
 })
 
-type Order = z.infer<typeof OrderSchema>
+type Order = z.infer<typeof OrderSchema> & {
+  _id?: string
+}
 
 const OrderRepository = repositoryFactory<Order>(COLLECTION_NAME)
 
