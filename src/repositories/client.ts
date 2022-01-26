@@ -4,14 +4,15 @@ import { repositoryFactory } from "../factories/repository";
 const COLLECTION_NAME = 'clients'
 
 const ClientSchema = z.object({
-  _id: z.string().uuid(),
-  name: z.string(),
+  name: z.string().min(1),
   email: z.string().email(),
-  phone: z.string()
+  phone: z.string().min(1)
 })
 
-type Client = z.infer<typeof ClientSchema>
+type Client = z.infer<typeof ClientSchema> & {
+  _id: string
+}
 
 const ClientRepository = repositoryFactory<Client>(COLLECTION_NAME)
 
-export { ClientRepository, Client }
+export { ClientRepository, ClientSchema }
