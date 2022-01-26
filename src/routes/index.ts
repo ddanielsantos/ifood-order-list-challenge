@@ -4,10 +4,10 @@ import { order } from './order'
 
 const router = new Router()
 
-router.use(order.routes())
-router.use(order.allowedMethods())
+router.use('/api/orders', order.routes())
+router.use('/api/orders', order.allowedMethods())
 
-router.get('/', async (ctx, next) => {
+router.get('/api', async (ctx, next) => {
   ctx.body = 'Ola'
 })
 
