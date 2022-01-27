@@ -1,0 +1,19 @@
+.app {
+  padding: 20px;
+  background-color: aquamarine;
+}
+
+.filterArea {
+  background-color: burlywood;
+  padding: 20px;
+}
+
+.ordersArea {
+  background-color: bisque;
+  padding: 20px;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}

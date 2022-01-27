@@ -20,7 +20,7 @@ const OrderSchema = z.object({
   items: ItemSchema.min(1)
 })
 
-type Order = z.infer<typeof OrderSchema> & {
+export type Order = z.infer<typeof OrderSchema> & {
   _id?: string
 }
 
