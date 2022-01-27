@@ -9,9 +9,13 @@ const FORMATTED_PASSWORD = URL.replace('<password>', DATABASE_PASSWORD)
 
 const FINAL_URL = process.env.ENVIRONMENT !== 'production' ? URL : FORMATTED_PASSWORD
 
-const CLIENT = new MongoClient(FINAL_URL)
+const CLIENT = new MongoClient(FINAL_URL);
+
+(async () => {
+  await CLIENT.connect()
+})()
 
 const DB_NAME = process.env.DATABASE_NAME
 const DB = CLIENT.db(DB_NAME)
 
-export { CLIENT, DB }
+export { DB }
