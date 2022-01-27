@@ -3,9 +3,11 @@ import axios from 'axios'
 
 import { Order } from '../../backend/src/repositories/order'
 import styles from './App.module.css'
+import { Modal } from './components/Modal'
 
 function App() {
   const [orders, setOrders] = useState<Order[]>([])
+  const [modalVisible, setModalVisibility] = useState<boolean>(true)
 
   useEffect(() => {
     async function fectchOrders() {
@@ -28,6 +30,12 @@ function App() {
 
       </div>
 
+      {
+        modalVisible &&
+        <Modal id="61f2d70110062c96733e7b56" client={{name: 'a', email: 'a', phone: 's'}}/>
+      }
+
+
       <div className={styles.ordersArea}>
         {
           orders[0] &&
@@ -37,6 +45,7 @@ function App() {
                 <th>Client</th>
                 <th>Confirmed At</th>
                 <th>Restaurant</th>
+                {/* <th>a</th> */}
               </tr>
             </thead>
 
@@ -47,6 +56,7 @@ function App() {
                     <td>{order.client}</td>
                     <td>{order.confirmedAt.slice(0, 6)}</td>
                     <td>{order.restaurant}</td>
+                    {/* <td>{order._id}</td> */}
                   </tr>
                 )
               })}

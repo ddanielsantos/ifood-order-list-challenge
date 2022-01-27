@@ -1,0 +1,7 @@
+.modal {
+  position: absolute;
+  top: calc(50% - 140px);
+  left: calc(50% - 250px);
+  width: 500px;
+  background-color: burlywood;
+}
