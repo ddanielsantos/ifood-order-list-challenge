@@ -24,19 +24,19 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Setup NodeJS ${{ matrix.node-version }}
-    - uses: actions/setup-node@v2
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
     - name: Acessing DIR
-    - run: cd frontend
+      run: cd frontend
     
     - name: Installing dependencies
-    - run: npm run install
+      run: npm run install
     
     - name: Building files
-    - run : npm run build
+      run : npm run build
   
   deploy:
     name: Deploy
@@ -48,4 +48,4 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: List dir
-    - run: ls
+      run: ls
