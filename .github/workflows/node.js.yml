@@ -20,6 +20,9 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
+    - run: cd frontend
+      name: Acessing DIR
+
     - uses: actions/checkout@v2
       name: Checkout repository
     
@@ -29,8 +32,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
-    - run: cd frontend
-      name: Acessing DIR
+    
     
     - run: npm run install
       name: Installing dependencies
