@@ -1,7 +1,7 @@
 {
     "name": "frontend",
     "version": "0.0.0",
-    "homepage": "https://ddanielsantos.github.io/ifood-order-list-challenge",
+    "homepage": "https://ddanielsantos.github.io/ifood-order-list-challenge/",
     "scripts": {
         "dev": "vite",
         "predeploy": "yarn build",
