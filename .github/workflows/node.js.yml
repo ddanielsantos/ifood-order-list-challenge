@@ -20,12 +20,12 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - run: cd frontend
-      name: Acessing DIR
-
     - uses: actions/checkout@v2
       name: Checkout repository
     
+    - run: cd frontend/
+      name: Acessing DIR
+
     - uses: actions/setup-node@v2
       name: Setup NodeJS ${{ matrix.node-version }}
       with:
