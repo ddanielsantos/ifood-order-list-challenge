@@ -20,23 +20,23 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - name: Checkout repository
     - uses: actions/checkout@v2
+      name: Checkout repository
     
-    - name: Setup NodeJS ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+    - uses: actions/setup-node@v2
+      name: Setup NodeJS ${{ matrix.node-version }}
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
-    - name: Acessing DIR
-      run: cd frontend
+      name: Acessing DIR
+    - run: cd frontend
     
-    - name: Installing dependencies
-      run: npm run install
+      name: Installing dependencies
+    - run: npm run install
     
-    - name: Building files
-      run : npm run build
+      name: Building files
+    - run : npm run build
   
   deploy:
     name: Deploy
@@ -44,8 +44,8 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout repository
     - uses: actions/checkout@v2
+      name: Checkout repository
     
-    - name: List dir
-      run: ls
+      name: List dir
+    - run: ls
