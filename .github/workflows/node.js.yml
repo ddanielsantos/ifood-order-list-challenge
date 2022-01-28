@@ -47,5 +47,11 @@ jobs:
     - name: Checkout repository
     - uses: actions/checkout@v2
     
-    - name: list dir
+    - name: Setup NodeJS ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: List dir
     - run: ls
