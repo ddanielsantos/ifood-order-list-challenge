@@ -29,14 +29,14 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
-      name: Acessing DIR
     - run: cd frontend
+      name: Acessing DIR
     
-      name: Installing dependencies
     - run: npm run install
+      name: Installing dependencies
     
-      name: Building files
     - run : npm run build
+      name: Building files
   
   deploy:
     name: Deploy
@@ -47,5 +47,5 @@ jobs:
     - uses: actions/checkout@v2
       name: Checkout repository
     
-      name: List dir
     - run: ls
+      name: List dir
