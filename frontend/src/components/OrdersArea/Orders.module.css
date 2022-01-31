@@ -1,0 +1,25 @@
+.ordersArea {
+  background-color: #2E8BC0;
+  border-radius: 4px;
+  max-width: 1100px;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.order {
+  flex: 1 275px;
+  padding: 5px 7px;
+  border-radius: 4px;
+  border: 1px solid #B1D4E0;
+  background-color: #B1D4E0;
+}
+
+.order:hover {
+  border: 1px solid black
+}
+
+.order > *:not(:last-child) {
+  margin-bottom: 5px;
+}
