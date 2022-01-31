@@ -1,19 +1,29 @@
 .app {
-  padding: 20px;
-  background-color: aquamarine;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #145DA0;
 }
 
-.filterArea {
-  background-color: burlywood;
+header {
+  background-color: #0C2D48;
+  color: white;
+}
+
+header, main {
   padding: 20px;
 }
 
-.ordersArea {
-  background-color: bisque;
-  padding: 20px;
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
+main > * {
+  flex: 1 375px;
+}
+main > *:first-child {
+  max-width: 690px;
 }
