@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { repositoryFactory } from '../factories/repository'
+import isValidDate from '../utils/isValidDate'
 
 const COLLECTION_NAME = 'orders'
 
@@ -11,12 +12,11 @@ const ItemSchema = z.array(
   })
 )
 
-
 const OrderSchema = z.object({
   client: z.string().min(1),
   restaurant: z.string().min(1),
-  createdAt: z.string().min(1),
-  confirmedAt: z.string(),
+  createdAt: z.string().refine(isValidDate, {message: 'Not a valid date'}),
+  confirmedAt: z.string().refine(isValidDate, {message: 'Not a valid date'}),
   items: ItemSchema.min(1)
 })
 
