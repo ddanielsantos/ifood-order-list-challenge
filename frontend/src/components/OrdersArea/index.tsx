@@ -3,7 +3,7 @@ import axios from 'axios'
 import styles from './Orders.module.css'
 import { Order } from '../../../../backend/src/repositories/order'
 
-const API_BASE_URL = 'http://ifood-order-list.herokuapp.com/api'
+const API_BASE_URL = 'https://ifood-order-list.herokuapp.com/api'
 
 const orders1 = [
   {
